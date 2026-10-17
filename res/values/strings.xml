@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Honda Launcher</string>
+    <!--
+      Where the launcher looks for new versions. Must serve JSON:
+      {"versionCode": 3, "versionName": "0.3", "apkUrl": "https://.../launcher.apk", "sha256": "<hex>"}
+      Leave empty to disable self-update.
+    -->
+    <string name="update_manifest_url">https://raw.githubusercontent.com/solevi/honda-launcher/main/update.json</string>
+</resources>
