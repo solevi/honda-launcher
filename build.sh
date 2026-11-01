@@ -26,10 +26,10 @@ JAVAC=${JAVAC:-/home/lavagyan/android-studio/jbr/bin/javac}
 
 "$BT/d8" --release --min-api 27 --lib "$ANDROID_JAR" --output "$OUT" $(find "$OUT/classes" -name '*.class')
 cp "$OUT/unsigned.apk" "$OUT/app.apk"
-(cd "$OUT" && zip -q app.apk classes.dex)   # add dex to the package (zip must be on PATH)
+(cd "$OUT" && zip -X -q app.apk classes.dex)   # add dex to the package (zip must be on PATH)
 
 "$BT/zipalign" -f -p 4 "$OUT/app.apk" "$OUT/aligned.apk"
-"$BT/apksigner" sign --ks "$KEY" --ks-pass pass:android --key-pass pass:android \
+"$BT/apksigner" sign --v1-signing-enabled false --v2-signing-enabled true --ks "$KEY" --ks-pass pass:android --key-pass pass:android \
   --ks-key-alias honda-launcher --out "$OUT/launcher-signed.apk" "$OUT/aligned.apk"
 "$BT/apksigner" verify --verbose "$OUT/launcher-signed.apk" | head -3
 echo "built $OUT/launcher-signed.apk"

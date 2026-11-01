@@ -3,29 +3,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#101014"
-    android:padding="16dp">
+    android:background="@color/bg"
+    android:fitsSystemWindows="true">
 
+    <!-- status bar: clock | activation | update -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:id="@+id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:gravity="center"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"/>
 
         <Button
             android:id="@+id/btnUpdate"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check for updates" />
+            android:text="Update"
+            android:textColor="@color/accent"
+            android:textSize="13sp"/>
     </LinearLayout>
+
+    <!-- favorites (hidden when empty) -->
+    <TextView
+        android:id="@+id/favHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"
+        android:text="Favorites"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:visibility="gone"/>
+
+    <HorizontalScrollView
+        android:id="@+id/favScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/favRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/allHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"
+        android:text="All apps"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"/>
 
     <GridView
         android:id="@+id/grid"
@@ -33,9 +93,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:numColumns="auto_fit"
-        android:columnWidth="140dp"
-        android:stretchMode="columnWidth"
+        android:columnWidth="@dimen/cell"
+        android:stretchMode="spacingWidthUniform"
         android:gravity="center"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="16dp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="16dp"
+        android:verticalSpacing="@dimen/gap"
+        android:scrollbarStyle="outsideOverlay"/>
 </LinearLayout>
